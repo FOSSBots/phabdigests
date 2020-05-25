@@ -34,7 +34,7 @@ def run(config):
           parse = data[x]
           description = parse["fields"]
           description = description["name"]
-          output = output + "\nhttps://" + phaburl + "/T" + str(parse["id"]) + " - " + str(description)
+          output = output + "\n\nhttps://" + phaburl + "/T" + str(parse["id"]) + " - " + str(description)
           output = str(output)
           x = x + 1
       msg = MIMEMultipart()

@@ -11,10 +11,14 @@ def run(list, phaburl):
   for line in file:
     configdata = line.split(',')
     apiconfig = 'apikey-' + str(phaburl)
-    if configdata[1].startswith('apikey-') == apiconfig:
+    if configdata[1] == apiconfig:
       apikey = configdata[2]
     if configdata[1] == 'sender':
       sender = configdata[2]
+    if configdata[1] == 'emailpassword':
+        gmail_password = configdata[2]
+    if configdata[1] == 'replyto':
+        replyto = configdata[2]
   file = open(list, 'r')
   for line in file:
       info = line.split(',')
@@ -39,9 +43,13 @@ def run(list, phaburl):
       msg["Subject"] = "Phabricator Search Alert"
       msg["From"] = sender
       msg["To"] = info[2]
+      msg["Reply-to"] = replyto
       body = "This is your automated search alert from Phabricator \n " + output
       msg.attach(MIMEText(body, 'plain'))
-      smtp = smtplib.SMTP("localhost")
+      smtp = smtplib.SMTP("smtp.gmail.com", 587)
+      smtp.ehlo()
+      smtp.starttls()
+      smtp.login(sender, gmail_password)
       smtp.sendmail(msg["From"], msg["To"], msg.as_string())
       smtp.quit()
       print ("Successfully sent email")
@@ -51,14 +59,11 @@ try:
     list = 'weekly.csv'
   elif sys.argv[1] == 'monthly':
     list = 'monthly.csv'
-  else:
-    list = sys.argv[1]
-  if sys.argv[1] == 'bots':
+
+  if sys.argv[2] == 'bots':
     phaburl = 'phab.bots.miraheze.wiki'
   elif sys.argv[2] == 'mh':
     phaburl = 'phabricator.miraheze.org'
-  else:
-    phaburl = 'phabricator.wikimedia.org'
   run(list,phaburl)
 except IndexError:
  print("Format: script.py <list> <phaburl>")

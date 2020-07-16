@@ -40,7 +40,7 @@ def run(list, phaburl):
           output = str(output)
           x = x + 1
       msg = MIMEMultipart()
-      msg["Subject"] = "Phabricator Search Alert"
+      msg["Subject"] = "Phabricator Digests"
       msg["From"] = sender
       msg["To"] = info[2]
       msg["Reply-to"] = replyto

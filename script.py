@@ -54,9 +54,9 @@ try:
   else:
     list = sys.argv[1]
   if sys.argv[1] == 'bots':
-    list = 'phab.bots.miraheze.wiki'
+    phaburl = 'phab.bots.miraheze.wiki'
   elif sys.argv[2] == 'mh':
-    list = 'phabricator.miraheze.org'
+    phaburl = 'phabricator.miraheze.org'
   else:
     phaburl = 'phabricator.wikimedia.org'
   run(list,phaburl)

@@ -11,7 +11,7 @@ def run(list, phaburl):
   for line in file:
     configdata = line.split(',')
     apiconfig = 'apikey-' + str(phaburl)
-    if configdata[1].startswiki('apikey-') == 'apikey':
+    if configdata[1].startswith('apikey-') == 'apikey':
       apikey = configdata[2]
     if configdata[1] == 'sender':
       sender = configdata[2]

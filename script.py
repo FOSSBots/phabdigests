@@ -4,17 +4,15 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sys
-def run(config):
+def run(list, phaburl):
   file = open('config.csv', 'r')
   apikey = ''
-  phaburl = 'phabricator.wikimedia.org'
   sender = ''
   for line in file:
     configdata = line.split(',')
-    if configdata[1] == 'apikey':
+    apiconfig = 'apikey-' + str(phaburl)
+    if configdata[1].startswiki('apikey-') == 'apikey':
       apikey = configdata[2]
-    if configdata[1] == 'phaburl':
-      phaburl = configdata[2]
     if configdata[1] == 'sender':
       sender = configdata[2]
   file = open(config, 'r')
@@ -50,10 +48,17 @@ def run(config):
   file.close()
 try:
   if sys.argv[1] == 'weekly':
-    run('weekly.csv')
+    list = 'weekly.csv'
   elif sys.argv[1] == 'monthly':
-    run('monthly.csv')
+    list = 'monthly.csv'
   else:
-    run(sys.argv[1])
+    list = sys.argv[1]
+   if sys.argv[1] == 'bots':
+    list = 'phab.bots.miraheze.wiki'
+  elif sys.argv[2] == 'mh':
+    list = 'phabricator.miraheze.org'
+  else:
+    phaburl = 'phabricator.wikimedia.org'
+  run(list,phaburl)
 except IndexError:
- print("No command specified.")
+ print("Format: script.py <list> <phaburl>")

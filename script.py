@@ -15,7 +15,7 @@ def run(list, phaburl):
       apikey = configdata[2]
     if configdata[1] == 'sender':
       sender = configdata[2]
-  file = open(config, 'r')
+  file = open(list, 'r')
   for line in file:
       info = line.split(',')
       data = {

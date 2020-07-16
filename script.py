@@ -53,7 +53,7 @@ try:
     list = 'monthly.csv'
   else:
     list = sys.argv[1]
-   if sys.argv[1] == 'bots':
+  if sys.argv[1] == 'bots':
     list = 'phab.bots.miraheze.wiki'
   elif sys.argv[2] == 'mh':
     list = 'phabricator.miraheze.org'

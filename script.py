@@ -65,5 +65,6 @@ try:
   elif sys.argv[2] == 'mh':
     phaburl = 'phabricator.miraheze.org'
   run(list,phaburl)
-except IndexError:
+except IndexError as e:
+ print(e)
  print("Format: script.py <list> <phaburl>")

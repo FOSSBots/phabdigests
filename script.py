@@ -65,7 +65,7 @@ try:
     list = 'monthly.csv'
 
   if sys.argv[2] == 'bots':
-    phaburl = 'phab.bots.miraheze.wiki'
+    phaburl = 'phab.mirahezebots.org'
   elif sys.argv[2] == 'mh':
     phaburl = 'phabricator.miraheze.org'
   run(list,phaburl)

@@ -29,7 +29,11 @@ def run(list, phaburl):
       response = requests.post('https://' + phaburl + '/api/maniphest.search', data=data)
       response = response.json()
       result = response["result"]
-      data = result["data"]
+      try:
+        data = result["data"]
+      except TypeError:
+        print(data)
+        sys.exit(1)
       x = 0
       output = ''
       while x < len(data):

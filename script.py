@@ -32,7 +32,7 @@ def run(list, phaburl):
       try:
         data = result["data"]
       except TypeError:
-        print(result)
+        print(response)
         sys.exit(1)
       x = 0
       output = ''

@@ -5,7 +5,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sys
 def run(list, phaburl):
-  file = open('config.csv', 'r')
+  try:
+    file = open('config.csv', 'r')
+  except FileNotFoundError:
+    file = open('/srv/phabdigests/config.csv', 'r')
   apikey = ''
   sender = ''
   for line in file:

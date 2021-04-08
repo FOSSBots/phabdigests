@@ -8,7 +8,7 @@ def run(list, phaburl):
   try:
     file = open('config.csv', 'r')
   except FileNotFoundError:
-    file = open('/srv/phabdigests/config.csv', 'r')
+    file = open('/srv/phabdigest/config.csv', 'r')
   apikey = ''
   sender = ''
   for line in file:

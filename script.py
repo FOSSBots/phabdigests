@@ -4,7 +4,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sys
-def run(list, phaburl):
+def run(emaillist, phaburl):
   try:
     file = open('config.csv', 'r')
   except FileNotFoundError:
@@ -22,8 +22,7 @@ def run(list, phaburl):
         gmail_password = configdata[2]
     if configdata[1] == 'replyto':
         replyto = configdata[2]
-  print(list)
-  file = open(list, 'r')
+  file = open(emaillist, 'r')
   for line in file:
       info = line.split(',')
       data = {
@@ -64,15 +63,17 @@ def run(list, phaburl):
   file.close()
 try:
   if sys.argv[1] == 'weekly':
-    list = 'weekly.csv'
+    emaillist = 'weekly.csv'
   elif sys.argv[1] == 'monthly':
-    list = 'monthly.csv'
+    emaillist = 'monthly.csv'
+  else:
+    emaillist = sys.argv[1]
 
   if sys.argv[2] == 'bots':
     phaburl = 'phab.mirahezebots.org'
   elif sys.argv[2] == 'mh':
     phaburl = 'phabricator.miraheze.org'
-  run(list,phaburl)
+  run(emaillist,phaburl)
 except IndexError as e:
  print(e)
  print("Format: script.py <list> <phaburl>")

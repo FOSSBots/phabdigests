@@ -22,6 +22,7 @@ def run(list, phaburl):
         gmail_password = configdata[2]
     if configdata[1] == 'replyto':
         replyto = configdata[2]
+  print(list)
   file = open(list, 'r')
   for line in file:
       info = line.split(',')

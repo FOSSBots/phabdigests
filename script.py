@@ -70,7 +70,7 @@ try:
     emaillist = sys.argv[1]
 
   if sys.argv[2] == 'bots':
-    phaburl = 'phab.mirahezebots.org'
+    phaburl = 'phab.fossbots.org'
   elif sys.argv[2] == 'mh':
     phaburl = 'phabricator.miraheze.org'
   run(emaillist,phaburl)

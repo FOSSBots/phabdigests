@@ -53,7 +53,7 @@ def run(emaillist, phaburl):
       msg["Reply-to"] = replyto
       body = "This is your automated search alert from Phabricator \n " + output
       msg.attach(MIMEText(body, 'plain'))
-      smtp = smtplib.SMTP("mail.mirahezebots.org", 587)
+      smtp = smtplib.SMTP("smtppro.zoho.eu", 587)
       smtp.ehlo()
       smtp.starttls()
       smtp.login(sender, gmail_password)
